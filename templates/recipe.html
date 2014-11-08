@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block bodycontent %}
+    <div class= "container">
+    <center><h1>{{recipe["name"]}}</h1></center>
+    </div>
+<div class="container">
+   <div class ="row">
+       <div class="col-md-4">
+        <br><img src="{{recipe['images'][0]['hostedLargeUrl']}}"></div>
+       <div  class="col-md-8">
+           <h3> Ingredients</h3>
+           <table class= "table table-striped">
+               {% for ing in recipe["ingredientLines"] %}
+               <tr><td>{{ing}}</td></tr>
+               {% endfor %}
+            </table>
+        </div>
+       </div>
+   <div class="container">
+       <a href="{{recipe["source"]["sourceRecipeUrl"]}}" class= "btn btn-lg btn-block btn-warning">Click Here for the Recipe </a>
+   </div>
+   
+{% endblock %}

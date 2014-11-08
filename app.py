@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, render_template, request
-#import api
+import api
 
 app = Flask(__name__)
 
@@ -8,13 +8,19 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/results")
+@app.route("/results",methods=["GET","POST"])
 def results():
-    return render_template("results.html")
+    if request.method == "GET":
+        ingredients=request.args.get("search")
+        ingredients=ingredients.split(",")
+        results=api.getResults(ingredients)
+        return render_template("results.html",ingredients=ingredients,results=results)
 
 @app.route("/recipe/<id>")
-def recipe():
-    return render_template("recipe.html")
+def recipe(id):
+    recipe=api.getRecipe(id)
+    #print recipe
+    return render_template("recipe.html",recipe=recipe)
 
 if __name__=="__main__":
     app.debug=True

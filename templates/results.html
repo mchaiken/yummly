@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 
 {% block bodycontent %}
-Recipies that contain ingredients:<br>
+<div class="container">
+Recipies that contain ingredient(s):<br>
+
 <ul>
     {% for ingredient in ingredients %}
     <li> {{ingredient}}</li>
-    {%endfor %}
+    {% endfor %}
+</div>
 <div class="container">
     {% for result in results %}
-        <div class="container">
-            {{result}}
+        <div class="media container">
+            
+            <h3><a href="/recipe/{{result['id']}}">{{result["recipeName"]}}</a></h3>
+            <div class="row container">
+                <div class="col-md-1"> <img src="{{result["smallImageUrls"][0]}}"> </div>
+            <div class="col-md-8">
+                <strong>Source:</strong> {{result["sourceDisplayName"]}}<br>
+                <strong>Rating:</strong> {{result["rating"]}}<br>
+                <strong>Ingredients:</strong> {{", ".join(result["ingredients"])}}</div>
+            
+            </div>
+                
         </div>
-    {%endfor%}
+    <br>
+    {% endfor %}
 </div>
+{%endblock bodycontent %}
