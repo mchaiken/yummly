@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+Recipies that contain ingredients:<br>
+<ul>
+    {% for ingredient in ingredients %}
+    <li> {{ingredient}}</li>
+    {%endfor %}
+<div class="container">
+    {% for result in results %}
+        <div class="container">
+            {{result}}
+        </div>
+    {%endfor%}
+</div>
