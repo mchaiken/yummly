@@ -26,3 +26,11 @@ def getRecipe(id):
     return json.loads(result)
 
 #getRecipe("Chocolate-Mousse-Epicurious_1")
+
+def getSong(tag):
+    url="http://8tracks.com/mix_sets/tags:"+tag+".json?api_key=52947991b38f982d9dc6842c0bd653fcd0df0a20&include=mixes"
+    request = urllib2.urlopen(url)
+    result = request.read()
+    d = json.loads(result)
+    url=d["mixes"][0]["restful_url"]
+    return url
