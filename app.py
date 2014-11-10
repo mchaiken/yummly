@@ -19,6 +19,7 @@ def results():
 @app.route("/recipe/<id>")
 def recipe(id):
     recipe=api.getRecipe(id)
+    #Get the largest flavor and use it as tag to search for mix: recipe["flavors"]
     #print recipe
     return render_template("recipe.html",recipe=recipe)
 
