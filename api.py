@@ -1,4 +1,4 @@
-import urllib2, json
+import urllib2, json, random
 
 def getResults(ingredients):
     url="""
@@ -33,6 +33,9 @@ def getSong(tag):
     request = urllib2.urlopen(url)
     result = request.read()
     d = json.loads(result)
-    url=d["mixes"][0]["restful_url"]
+    index=random.randrange(0,10)
+    if index >= len(d["mixes"]):
+        index = len(d["mixes"]) -1
+    url=d["mixes"][index]["restful_url"]
     return url
     #print getSong("Halloween")
