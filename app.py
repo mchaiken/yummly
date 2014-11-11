@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 from flask import Flask, render_template, request
 import api, operator, random 
@@ -21,6 +22,8 @@ def recipe(id):
     recipe=api.getRecipe(id)
     if "holiday" in recipe["attributes"].keys():
         tags= recipe["attributes"]["holiday"][random.randrange(0,len(recipe["attributes"]["holiday"]))]
+    elif "cuisine" in recipe["attributes"].keys():
+        tags= recipe["attributes"]["cuisine"][random.randrange(0,len(recipe["attributes"]["cuisine"]))]
     elif len(recipe["flavors"]) > 0:
         print recipe["flavors"]
         tags=  max(recipe["flavors"].iteritems(), key=operator.itemgetter(1))[0]
@@ -28,7 +31,7 @@ def recipe(id):
         tags=recipe["name"].split(" ")[0]
     #Get the largest flavor and use it as tag to search for mix: recipe["flavors"]
     #print recipe
-    return render_template("recipe.html",recipe=recipe, url=api.getSong(tags))
+    return render_template("recipe.html",recipe=recipe, url=api.getSong(tags), tag=tags)
 
 if __name__=="__main__":
     app.debug=True

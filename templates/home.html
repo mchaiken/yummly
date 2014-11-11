@@ -3,10 +3,13 @@
 {% block bodycontent %}
 <div class= "container jumbotron" style= "border-radius:30px">
 	<center>
-	<h1>What do you want to cook with?</h1>
+	<h1 class= "text-warnign">What do you want to cook with?</h1>
+    <div class= "form-group has-error" style="margin: 20px">
 	<form action="/results" method="GET">
-		<label>Ingredients:</label> <input class= "form-control" type="text" name="search" placeholder="eye of newt, hot lava, brussle sprouts"><br>
-		<button type="submit" name= "submit" class= "btn btn-lg btn-warning">Search</button>
+        <label class= "control-label">Ingredients:</label> <input class= "form-control" type="text" name="search" placeholder="eye of newt, hot lava, brussle sprouts"><br>
+		<button type="submit" name= "submit" class= "btn btn-lg btn-danger">Search</button>
+        <div>
 	</center>
 	</form>
+    </div>
 {%endblock bodycontent %}

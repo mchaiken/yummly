@@ -36,6 +36,9 @@ def getSong(tag):
     index=random.randrange(0,10)
     if index >= len(d["mixes"]):
         index = len(d["mixes"]) -1
-    url=d["mixes"][index]["restful_url"]
+    if index == -1:
+        url= getSong("cooking")
+    else:    
+        url=d["mixes"][index]["restful_url"]
     return url
     #print getSong("Halloween")
