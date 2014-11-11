@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, render_template, request
-import api
+import api, operator 
 
 app = Flask(__name__)
 
@@ -19,9 +19,13 @@ def results():
 @app.route("/recipe/<id>")
 def recipe(id):
     recipe=api.getRecipe(id)
+    if "holiday" in recipe["attributes"].keys():
+        tags= recipe["attributes"]["holiday"]
+    else:
+        tags=  max(recipe["flavors"].iteritems(), key=operator.itemgetter(1))[0]
     #Get the largest flavor and use it as tag to search for mix: recipe["flavors"]
     #print recipe
-    return render_template("recipe.html",recipe=recipe)
+    return render_template("recipe.html",recipe=recipe, url=api.getSong(tags))
 
 if __name__=="__main__":
     app.debug=True

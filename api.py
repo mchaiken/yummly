@@ -32,7 +32,7 @@ def getSong(tag):
     print url
     request = urllib2.urlopen(url)
     result = request.read()
-    # d = json.loads(result)
+    d = json.loads(result)
     url=d["mixes"][0]["restful_url"]
-    #return url
+    return url
     #print getSong("Halloween")
