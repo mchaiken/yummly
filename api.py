@@ -42,3 +42,17 @@ def getSong(tag):
         url=d["mixes"][index]["restful_url"]
     return url
     #print getSong("Halloween")
+
+
+def getVideo(dish):
+    dish="+".join(dish.split(" "))
+    url="https://gdata.youtube.com/feeds/api/videos?q="+dish+"&oderby=viewCount&alt=json&key=AI39si6RrkEc9vwqZLhttr2enr_FjqalFmXQJuKqY6ix6FC0SaPu17-tlmpopY5u44-5T5YkIbuFRKlQSIDnGHfY6H1Qx-69Ig"
+    request= urllib2.urlopen(url)
+    result=request.read()
+    x=json.loads(result)
+    yvideo=x["feed"]["entry"][0]["media$group"]["media$player"]
+    print yvideo
+    return yvideo[0]
+   
+
+getVideo("chocolate cake")

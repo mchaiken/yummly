@@ -20,6 +20,7 @@ def results():
 @app.route("/recipe/<id>")
 def recipe(id):
     recipe=api.getRecipe(id)
+    name=recipe["name"]
     if "holiday" in recipe["attributes"].keys():
         tags= recipe["attributes"]["holiday"][random.randrange(0,len(recipe["attributes"]["holiday"]))]
     elif "cuisine" in recipe["attributes"].keys():
@@ -31,7 +32,7 @@ def recipe(id):
         tags=recipe["name"].split(" ")[0]
     #Get the largest flavor and use it as tag to search for mix: recipe["flavors"]
     #print recipe
-    return render_template("recipe.html",recipe=recipe, url=api.getSong(tags), tag=tags)
+    return render_template("recipe.html",recipe=recipe, url=api.getSong(tags), tag=tags, video=api.getVideo(name))
 
 if __name__=="__main__":
     app.debug=True
