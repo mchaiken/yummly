@@ -6,7 +6,7 @@ def getResults(ingredients):
     for ingredient in ingredients:
         if ingredient[0]==" ":
             ingredient= ingredient[1:]
-        url+="&allowedIngredient[]="+ingredient
+        url+="&allowedIngredient[]="+ingredient.lower()
     #print url
     request = urllib2.urlopen(url)
     result = request.read()
@@ -50,9 +50,9 @@ def getVideo(dish):
     request= urllib2.urlopen(url)
     result=request.read()
     x=json.loads(result)
-    yvideo=x["feed"]["entry"][0]["media$group"]["media$player"]
-    print yvideo
-    return yvideo[0]
+    yvideo=x["feed"]["entry"][0]["link"][0]["href"][32:43]
+    print "URL ://www.youtube.com/embed/"+yvideo
+    return "//www.youtube.com/embed/"+yvideo
    
 
 getVideo("chocolate cake")
