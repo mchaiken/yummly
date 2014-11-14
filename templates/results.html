@@ -15,7 +15,12 @@ Recipies that contain ingredient(s):<br>
             
             <h3><a href="/recipe/{{result['id']}}">{{result["recipeName"]}}</a></h3>
             <div class="row container">
+				{% if "smallImageUrls" in result.keys() %}
                 <div class="col-md-1"> <img src="{{result["smallImageUrls"][0]}}"> </div>
+				{%else %}
+				 <div class="col-md-1"> <img src="http://lorempixel.com/90/65/animals/sorry"> </div>
+				{% endif %}
+				
             <div class="col-md-8">
                 <strong>Source:</strong> {{result["sourceDisplayName"]}}<br>
                 <strong>Rating:</strong> {{result["rating"]}}<br>
